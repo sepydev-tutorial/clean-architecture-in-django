@@ -1,4 +1,4 @@
-#Clean Architecture in Django
+# Clean Architecture in Django
 
 This post will try to explain our approach to apply Clean Architecture on a Django Restful API. It is useful to be familiarized with Django framework as well as with Uncle Bob's Clean Architecture before keep reading.
 
@@ -27,7 +27,7 @@ class Product(object):
 This is a simplistic example of an entity. A real entity should be richer. Allocate here business logic and high-level 
 rules that are related to this entity (eg: invariant validations).
 
-###Use Cases Layer (Outermost Domain)
+### Use Cases Layer (Outermost Domain)
 
 We call them `interactors.py` and they contain the business logic of each use case. 
 Place here all the application logic. 
@@ -53,7 +53,7 @@ Again, this example is too simple. In a user registration, for example, we shoul
 check if username is available against the repo, create new user entity, 
 store it and call mailer service to ask for a confirmation.
 
-###Interface Adapters Layer
+### Interface Adapters Layer
 Here we have pieces that are decoupled from framework, 
 but are conscious of the environment (API Restful, database storage, caching...).
 <br/>
@@ -119,7 +119,7 @@ class ProductRepo(object):
         return product
 ```
 
-###Framework & Drivers Layer
+### Framework & Drivers Layer
 
 Composed by Django and third party libraries, 
 this layer is also where we place our code related to that parts to abstract their implementations (glue code).
@@ -188,7 +188,7 @@ In these layer we also have `models.py`, `admin.py`, `urls.py`, `settings.py`, m
 These layer is totally coupled to Django (or other libraries). Although it is really powerful and essential for our app we must try to keep it as lean as we can!
 
 <br/><br/>
-###Dependency Injection
+### Dependency Injection
 
 But... how do we join all these pieces? Dependency injection to the rescue!
 
